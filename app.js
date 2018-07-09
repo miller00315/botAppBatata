@@ -66,7 +66,9 @@ function processPostback(event) {
       }
 
       var message = greeting + "Eu sou seu atendente do Batata. Neste aplicativo você pode oferecer e solicitar diversos tipos de serviços. Escolha uma das opções abaixo:";
-      sendMessage(senderId, {text: message});
+      //sendMessage(senderId, {text: message});
+
+      respostaInicial(senderId, message);
 
     });
 
@@ -88,10 +90,10 @@ function processPostback(event) {
         name = bodyObj.first_name;
       }
 
-      
-
       var message = "Legal " + name + ", assista o tutorial abaixo para saber como oferecer o ser serviço pelo Batata e baixe o aplicativo através do link: ";
       sendMessage(senderId, {text: message});
+
+
 
     });
 
@@ -114,7 +116,7 @@ function processPostback(event) {
         name = bodyObj.first_name;
       }
       var message = "Bom, então vamaos lá " + name + ", digite o que você precisa e envie.";
-      sendMessage(senderId, {text: message});
+     sendMessage(senderId, {text: message});
 
     });
 
@@ -137,6 +139,101 @@ function sendMessage(recipientId, message) {
     }
   });
 }
+
+function respostaInicial(userId, message){
+
+	message = {
+
+			attachment = {
+				
+				type: "template",
+
+				payload: {
+
+					template: "generic",
+
+					elements:[{
+
+						title: message,
+
+						buttons: [{
+                      		type: "postback",
+                      		title: "Cliente",
+                      		payload: "Cliente"
+                    		}, {
+                      		type: "postback",
+                      		title: "Profissional",
+                      		payload: "Profissional"
+                    	}]
+
+					}]
+				}
+			}
+
+	};
+
+	sendMessage(userId, message);
+
+}
+
+/*
+function findMovie(userId, movieTitle) {
+  request("http://www.omdbapi.com/?type=movie&amp;t=" + movieTitle, function (error, response, body) {
+    if (!error &amp;&amp; response.statusCode === 200) {
+      var movieObj = JSON.parse(body);
+      if (movieObj.Response === "True") {
+        var query = {user_id: userId};
+        var update = {
+          user_id: userId,
+          title: movieObj.Title,
+          plot: movieObj.Plot,
+          date: movieObj.Released,
+          runtime: movieObj.Runtime,
+          director: movieObj.Director,
+          cast: movieObj.Actors,
+          rating: movieObj.imdbRating,
+          poster_url:movieObj.Poster
+        };
+        var options = {upsert: true};
+        Movie.findOneAndUpdate(query, update, options, function(err, mov) {
+          if (err) {
+            console.log("Database error: " + err);
+          } else {
+            message = {
+              attachment: {
+                type: "template",
+                payload: {
+                  template_type: "generic",
+                  elements: [{
+                    title: movieObj.Title,
+                    subtitle: "Is this the movie you are looking for?",
+                    image_url: movieObj.Poster === "N/A" ? "http://placehold.it/350x150" : movieObj.Poster,
+                    buttons: [{
+                      type: "postback",
+                      title: "Yes",
+                      payload: "Correct"
+                    }, {
+                      type: "postback",
+                      title: "No",
+                      payload: "Incorrect"
+                    }]
+                  }]
+                }
+              }
+            };
+            sendMessage(userId, message);
+          }
+        });
+      } else {
+          console.log(movieObj.Error);
+          sendMessage(userId, {text: movieObj.Error});
+      }
+    } else {
+      sendMessage(userId, {text: "Something went wrong. Try again."});
+    }
+  });
+}
+
 
 /*
 function processMessage(event) {
