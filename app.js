@@ -64,9 +64,63 @@ function processPostback(event) {
         name = bodyObj.first_name;
         greeting = "Olá " + name + ". ";
       }
+
       var message = greeting + "Eu sou seu atendente do Batata. Neste aplicativo você pode oferecer e solicitar diversos tipos de serviços. Escolha uma das opções abaixo:";
-      sendMessage(senderId, {text: message});
+      sendMessage(senderId, {text: message, buttons: [
+      	{type: "postback", title: "Cliente", payload: "Cliente"},
+      	{type: "postback", title: "Profissional", payload: "Profissional"}
+      	]});
+
     });
+
+  }else if(payload === "Profissional"){
+
+  	request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+
+      
+
+      var message = "Legal " + name + ", assista o tutorial abaixo para saber como oferecer o ser serviço pelo Batata e baixe o aplicativo através do link: ";
+      sendMessage(senderId, {text: message});
+
+    });
+
+
+  }else if(payload === "Cliente"){
+
+  	request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+      var message = "Bom, então vamaos lá " + name + ", digite o que você precisa e envie.";
+      sendMessage(senderId, {text: message});
+
+    });
+
   }
 }
 
@@ -86,3 +140,40 @@ function sendMessage(recipientId, message) {
     }
   });
 }
+
+/*
+function processMessage(event) {
+  if (!event.message.is_echo) {
+    var message = event.message;
+    var senderId = event.sender.id;
+
+    console.log("Received message from senderId: " + senderId);
+    console.log("Message is: " + JSON.stringify(message));
+
+    // You may get a text or attachment but not both
+    if (message.text) {
+      var formattedMsg = message.text.toLowerCase().trim();
+
+      // If we receive a text message, check to see if it matches any special
+      // keywords and send back the corresponding movie detail.
+      // Otherwise, search for new movie.
+      switch (formattedMsg) {
+        case "plot":
+        case "date":
+        case "runtime":
+        case "director":
+        case "cast":
+        case "rating":
+          getMovieDetail(senderId, formattedMsg);
+          break;
+
+        default:
+          findMovie(senderId, formattedMsg);
+      }
+    } else if (message.attachments) {
+      sendMessage(senderId, {text: "Sorry, I don't understand your request."});
+    }
+  }
+}
+
+*/
