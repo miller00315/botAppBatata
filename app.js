@@ -70,8 +70,53 @@ function processPostback(event) {
       sendMessage(senderId, {text: message});
 
       sendMessageWithButton(senderId, message);
-      
+
     });
+    
+  }else if(payload === "profissional"){
+
+  	request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+      var message = "Legal " + name + ", assista o tutorial no link e saiba como oferecer seus serviços no Batata!";
+      sendMessage(senderId, {text: message});
+
+    });
+
+  }else if(payload === "cliente"){
+
+  	request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+      var message = "Ok"+ name + ", entre com as uma das opções abaixo e veremos o que temos no batata para lhe oferecer!";
+      sendMessage(senderId, {text: message});
+
+    });
+
   }
 }
 
