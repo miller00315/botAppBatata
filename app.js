@@ -203,9 +203,10 @@ function baixeAplicativo(sender){
 					"title": "Baixe o Batata",
 					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua tudo o que você precisa!",
 					"buttons": [{
-						"type": "postback",
-						"title": "nao sei",
-						"payload": "ok",
+						"type":"web_url",
+            			"url":"https://www.messenger.com/",
+            			"title":"URL Button",
+            			"webview_height_ratio": "full"
 					}, {
 						"type": "postback",
 						"title": "nao sei",
