@@ -33,6 +33,8 @@ app.post("/webhook", function (req, res) {
       entry.messaging.forEach(function(event) {
         if (event.postback) {
           processPostback(event);
+        }else if(event.message){
+        	processMessage(event);
         }
       });
     });
@@ -62,11 +64,45 @@ function processPostback(event) {
       } else {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
-        greeting = "Hi " + name + ". ";
+        greeting = "Olá " + name + ". ";
       }
-      var message = greeting + "Olá eu sou  seu atendente no Batata, em que posso ajudar?";
+      var message = greeting + "Eu sou seu atendente no Batata, em que posso ajudar?";
       sendMessage(senderId, {text: message});
     });
+  }
+}
+
+function processMessage(event) {
+  if (!event.message.is_echo) {
+    var message = event.message;
+    var senderId = event.sender.id;
+
+    console.log("Received message from senderId: " + senderId);
+    console.log("Message is: " + JSON.stringify(message));
+
+    // You may get a text or attachment but not both
+    if (message.text) {
+      var formattedMsg = message.text.toLowerCase().trim();
+
+      // If we receive a text message, check to see if it matches any special
+      // keywords and send back the corresponding movie detail.
+      // Otherwise, search for new movie.
+      switch (formattedMsg) {
+
+        case "cliente":
+        	sendMessage(senderId, {text: "Entre com as uma das opções abaixo e veremos o que temos no batata para lhe oferecer!"});
+        	break;
+        
+        case "profissional":
+          	sendMessage(senderId, {text: "Legal, Assista o tutorial no link e saiba como oferecer seus serviços no Batata!"});
+          	break;
+
+        default:
+          	sendMessage(senderId, {text: "Desculpe, não entendi sua mensagem."});
+      }
+    } else if (message.attachments) {
+      sendMessage(senderId, {text: "Desculpe, não entendi sua mensagem."});
+    }
   }
 }
 
