@@ -117,7 +117,7 @@ function sendMessageWithButton(sender, message){
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"text": message,
+					"title": message,
 					"buttons": [{
 						"type": "postback",
 						"title": "Sou  profissional",
