@@ -203,13 +203,12 @@ function baixeAplicativo(sender){
 					"title": "Baixe o Batata",
 					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua tudo o que você precisa!",
 					"buttons": [{
-						"type":"web_url",
-						"url":"https://play.google.com/store/apps/details?id=com.gikacredgmail.gika",
-						"title":"Link paplicativo",
-						"webview_height_ratio": "full"
+						"type": "postback",
+						"title": "nao sei",
+						"payload": "ok",
 					}, {
 						"type": "postback",
-						"title": "",
+						"title": "nao sei",
 						"payload": "ok",
 					}],
 				}]
