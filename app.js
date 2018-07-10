@@ -68,7 +68,16 @@ function processPostback(event) {
       var message = greeting + "Eu sou seu atendente do Batata. Neste aplicativo você pode oferecer e solicitar diversos tipos de serviços. Escolha uma das opções abaixo:";
       sendMessage(senderId, {text: message});
 
-
+      sendMessage(senderId, {buttons: [{
+                      type: "postback",
+                      title: "Yes",
+                      payload: "Correct"
+                    }, {
+                      type: "postback",
+                      title: "No",
+                      payload: "Incorrect"
+                    }]});
+  
     });
 
   }else if(payload === "Profissional"){
@@ -92,18 +101,6 @@ function processPostback(event) {
       var message = "Legal " + name + ", assista o tutorial abaixo para saber como oferecer o ser serviço pelo Batata e baixe o aplicativo através do link: ";
       
       sendMessage(senderId, {text: message});
-
-      sendMessage(senderId, {buttons: [{
-                      		type: "postback",
-                      		title: "Cliente",
-                      		payload: "Cliente"
-                    		}, {
-                      		type: "postback",
-                      		title: "Profissional",
-                      		payload: "Profissional"
-                    	}]});
-    });
-
 
   }else if(payload === "Cliente"){
 
