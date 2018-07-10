@@ -67,9 +67,10 @@ function processPostback(event) {
         greeting = "Olá " + name + ". ";
       }
       var message = greeting + "Eu sou seu atendente no Batata, vou auxiliar-lhe a começar com o Batata app. Por favor escolha uma das opçoes abaixo:";
-     // sendMessage(senderId, {text: message});
+      sendMessage(senderId, {text: message});
 
-     sendMessageWithButton(senderId, message);
+      sendMessageWithButton(senderId, message);
+      
     });
   }
 }
@@ -117,7 +118,7 @@ function sendMessageWithButton(sender, message){
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"title": message,
+					"title": "O que você precisa?",
 					"buttons": [{
 						"type": "postback",
 						"title": "Sou  profissional",
