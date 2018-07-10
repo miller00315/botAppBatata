@@ -93,7 +93,7 @@ function processPostback(event) {
       var message = "Legal " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
       sendMessage(senderId, {text: message});
 
-      acesseGooglePlay(senderId);
+     // acesseGooglePlay(senderId);
 
     });
 
@@ -117,7 +117,7 @@ function processPostback(event) {
       var message = "Ok "+ name + ", no Batata você poderá encontrar diversos profissionais para atender as suas necessidades!";
       sendMessage(senderId, {text: message});
 
-      acesseGooglePlay(senderId);
+     // acesseGooglePlay(senderId);
 
 
     });
