@@ -62,59 +62,11 @@ function processPostback(event) {
       } else {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
-        greeting = "Olá " + name + ". ";
+        greeting = "Hi " + name + ". ";
       }
-
-      var message = greeting + "Eu sou seu atendente do Batata. Neste aplicativo você pode oferecer e solicitar diversos tipos de serviços. Escolha uma das opções abaixo:";
+      var message = greeting + "Olá eu sou  seu atendente no Batata, em que posso ajudar?";
       sendMessage(senderId, {text: message});
-
-
-  });
-    
-  }else if(payload === "Profissional"){
-
-  	request({
-      url: "https://graph.facebook.com/v2.6/" + senderId,
-      qs: {
-        access_token: process.env.PAGE_ACCESS_TOKEN,
-        fields: "first_name"
-      },
-      method: "GET"
-    }, function(error, response, body) {
-      var greeting = "";
-      if (error) {
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-      }
-
-      var message = "Legal " + name + ", assista o tutorial abaixo para saber como oferecer o ser serviço pelo Batata e baixe o aplicativo através do link: ";
-      
-      sendMessage(senderId, {text: message});
-
-  }else if(payload === "Cliente"){
-
-  	request({
-      url: "https://graph.facebook.com/v2.6/" + senderId,
-      qs: {
-        access_token: process.env.PAGE_ACCESS_TOKEN,
-        fields: "first_name"
-      },
-      method: "GET"
-    }, function(error, response, body) {
-      var greeting = "";
-      if (error) {
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-      }
-      var message = "Bom, então vamaos lá " + name + ", digite o que você precisa e envie.";
-     sendMessage(senderId, {text: message});
-
     });
-
   }
 }
 
