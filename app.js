@@ -66,7 +66,7 @@ function processPostback(event) {
         name = bodyObj.first_name;
         greeting = "Olá " + name + ". ";
       }
-      var message = greeting + "Eu sou seu atendente no Batata, em que posso ajudar?";
+      var message = greeting + "Eu sou seu atendente no Batata, vou auviliar-lhe a começar com o Batata app. A principio gostaria de saber um pouco amis sobre você, caso esteja procurando um serviço envie 'cliente', casos queira oferecer um serviço insira 'profissional', assim posso ajuda-lo a utilizar o batata!";
       sendMessage(senderId, {text: message});
     });
   }
