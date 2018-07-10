@@ -68,6 +68,9 @@ function processPostback(event) {
       var message = greeting + "Eu sou seu atendente do Batata. Neste aplicativo você pode oferecer e solicitar diversos tipos de serviços. Escolha uma das opções abaixo:";
       sendMessage(senderId, {text: message});
 
+
+  });
+    
   }else if(payload === "Profissional"){
 
   	request({
