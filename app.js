@@ -90,7 +90,7 @@ function processPostback(event) {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
       }
-      var message = "Muito bem Miller " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
+      var message = "Muito bom " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
       sendMessage(senderId, {text: message});
 
       baixeAplicativo(senderId);
@@ -204,13 +204,13 @@ function baixeAplicativo(sender){
 					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua tudo o que você precisa!",
 					"buttons": [{
 						"type":"web_url",
-            			"url":"https://www.messenger.com/",
-            			"title":"URL Button",
+            			"url":"https://play.google.com/store/apps/details?id=com.gikacredgmail.gika",
+            			"title":"Instale o Batata",
             			"webview_height_ratio": "full"
 					}, {
 						"type": "postback",
-						"title": "nao sei",
-						"payload": "ok",
+						"title": "Quero saber mais",
+						"payload": "saber",
 					}],
 				}]
 			}
