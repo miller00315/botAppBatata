@@ -90,12 +90,12 @@ function processPostback(event) {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
       }
-      var message = "Legal " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
+      var message = "Muito bem Miller " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
       sendMessage(senderId, {text: message});
 
-      sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
+      baixeAplicativo(senderId);
 
-     // acesseGooglePlay(senderId);
+      //sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
 
     });
 
@@ -119,7 +119,9 @@ function processPostback(event) {
       var message = "Ok "+ name + ", no Batata você poderá encontrar diversos profissionais para atender as suas necessidades!";
       sendMessage(senderId, {text: message});
 
-      sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
+      baixeAplicativo(senderId);
+
+     // sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
 
      // acesseGooglePlay(senderId);
 
@@ -189,6 +191,36 @@ function sendMessageWithButton(sender, message){
 	sendMessage(sender, messageData);
 
 }
+
+function baixeAplicativo(sender){
+
+	let messageData = {
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [{
+					"title": "Baixe o Batata",
+					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua tudo o que você precisa!",
+					"buttons": [{
+						"type":"web_url",
+						"url":"https://play.google.com/store/apps/details?id=com.gikacredgmail.gika",
+						"title":"Link paplicativo",
+						"webview_height_ratio": "full"
+					}, {
+						"type": "postback",
+						"title": "",
+						"payload": "ok",
+					}],
+				}]
+			}
+		}
+	}
+
+	sendMessage(sender, messageData);
+
+}
+
 // sends message to user
 function sendMessage(recipientId, message) {
   request({
