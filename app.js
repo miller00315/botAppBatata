@@ -66,7 +66,7 @@ function processPostback(event) {
         name = bodyObj.first_name;
         greeting = "Olá " + name + ". ";
       }
-      var message = greeting + "Eu sou seu atendente no Batata, vou auxiliar-lhe a começar com o Batata app. Por favor escolha uma das opçoes abaixo:";
+      var message = greeting + "Eu sou seu atendente no Batata, vou auxiliar-lhe à começar com o Batata app. Por favor escolha uma das opçoes abaixo:";
       sendMessage(senderId, {text: message});
 
       sendMessageWithButton(senderId, message);
@@ -90,7 +90,7 @@ function processPostback(event) {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
       }
-      var message = "Muito bom " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ e saiba como oferecer seus serviços no Batata!";
+      var message = "Muito bom " + name + ", assista o tutorial no link https://www.facebook.com/appbatata/videos/265830567322283/ , e saiba como oferecer seus serviços no Batata!";
       sendMessage(senderId, {text: message});
 
       baixeAplicativo(senderId);
@@ -121,12 +121,32 @@ function processPostback(event) {
 
       baixeAplicativo(senderId);
 
-     // sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
+    });
 
-     // acesseGooglePlay(senderId);
+  }else if(payload === "saber"){
 
+  	request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: process.env.PAGE_ACCESS_TOKEN,
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+      }
+      var message = "O Batata "+ name + " foi desenvolvido para possibilitar a conexão entre profissionais e pessoas que procuram serviços de uma maneira rápida, simples e aberta.";
+      sendMessage(senderId, {text: message});
+
+      baixeAplicativo(senderId);
 
     });
+
 
   }
 }
@@ -201,7 +221,7 @@ function baixeAplicativo(sender){
 				"template_type": "generic",
 				"elements": [{
 					"title": "Baixe o Batata",
-					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua tudo o que você precisa!",
+					"subtitle": "Facilite sua vida com um aplicativo que coloca na sua mão tudo o que você precisa!",
 					"buttons": [{
 						"type":"web_url",
             			"url":"https://play.google.com/store/apps/details?id=com.gikacredgmail.gika",
