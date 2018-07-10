@@ -66,8 +66,10 @@ function processPostback(event) {
         name = bodyObj.first_name;
         greeting = "Olá " + name + ". ";
       }
-      var message = greeting + "Eu sou seu atendente no Batata, vou auviliar-lhe a começar com o Batata app. A principio gostaria de saber um pouco amis sobre você, caso esteja procurando um serviço envie 'cliente', casos queira oferecer um serviço insira 'profissional', assim posso ajuda-lo a utilizar o batata!";
-      sendMessage(senderId, {text: message});
+     // var message = greeting + "Eu sou seu atendente no Batata, vou auviliar-lhe a começar com o Batata app. A principio gostaria de saber um pouco amis sobre você, caso esteja procurando um serviço envie 'cliente', casos queira oferecer um serviço insira 'profissional', assim posso ajuda-lo a utilizar o batata!";
+     // sendMessage(senderId, {text: message});
+
+     sendMessageWithButton(senderId);
     });
   }
 }
@@ -106,6 +108,44 @@ function processMessage(event) {
   }
 }
 
+
+function sendMessageWithButton(sender){
+
+	let messageData = {
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [{
+					"title": "First card",
+					"subtitle": "Element #1 of an hscroll",
+					"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+					"buttons": [{
+						"type": "web_url",
+						"url": "https://www.messenger.com",
+						"title": "web url"
+					}, {
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for first element in a generic bubble",
+					}],
+				}, {
+					"title": "Second card",
+					"subtitle": "Element #2 of an hscroll",
+					"image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+					"buttons": [{
+						"type": "postback",
+						"title": "Postback",
+						"payload": "Payload for second element in a generic bubble",
+					}],
+				}]
+			}
+		}
+	}
+
+	sendMessage(sender, messageData);
+
+}
 // sends message to user
 function sendMessage(recipientId, message) {
   request({
