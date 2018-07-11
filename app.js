@@ -288,6 +288,12 @@ async function sendAnswer(senderId) {
 			});
 
 			console.log(arraySnap.join(', '));
+
+			var resultado = arraySnap.join(', ');
+
+			var final = possibilidades + resultado;
+
+			sendMessage(senderId, {text: final});
 		});
 
 	sendMessage(senderId, {text: possibilidades});
