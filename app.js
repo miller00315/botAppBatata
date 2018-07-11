@@ -275,20 +275,18 @@ async function sendAnswer(senderId) {
 		.child('usuarios')
 		.child('Lavras')
 		.child('Disponiveis')
-		.once('value');
+		.once('value', function(snap){
 
-	snap.forEach(function(snapChild){
+			var result = {};
 
-		var result = {};
+			result['resultType'] = snap.key;
 
-		result['resultType'] = snapChild.key;
+			listAnswers.push(result);
 
-		listAnswers.push(result);
-
-	});
+		});
 
 	let possibilidades = "Esolha entre: ";
 
-	sendMessage(senderId, possibilidades + listAnswers[0].resultText);
+	sendMessage(senderId, possibilidades + listAnswers[0].resultType);
 
 }
