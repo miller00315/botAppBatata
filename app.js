@@ -267,7 +267,7 @@ function sendMessage(recipientId, message) {
   });
 }
 
-async function sendAnswer(senderId) {
+function sendAnswer(senderId) {
 /*
 	let listAnswers = [];
 
@@ -287,6 +287,6 @@ async function sendAnswer(senderId) {
 
 	let possibilidades = "Esolha entre: ";
 */
-	sendMessage(senderId, "teste");
+	sendMessage(senderId, "Teste");
 
 }
