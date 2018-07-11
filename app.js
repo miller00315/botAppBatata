@@ -280,7 +280,7 @@ async function sendAnswer(senderId) {
 		.child('Disponiveis')
 		.once('value', function(snap){
 
-			var arraySnap = []];
+			var arraySnap = [];
 
 			snap.forEach(function (childSnap){
 
