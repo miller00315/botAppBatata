@@ -268,7 +268,7 @@ function sendMessage(recipientId, message) {
 }
 
 async function sendAnswer(senderId) {
-
+/*
 	let listAnswers = [];
 
 	const snap = await firebase.firelord.REF
@@ -286,7 +286,7 @@ async function sendAnswer(senderId) {
 		});
 
 	let possibilidades = "Esolha entre: ";
-
-	sendMessage(senderId, possibilidades + listAnswers[0].resultType);
+*/
+	sendMessage(senderId, "teste");
 
 }
