@@ -268,12 +268,23 @@ function sendMessage(recipientId, message) {
   });
 }
 
-function sendAnswer(senderId) {
+async function sendAnswer(senderId) {
 
 	var temp = "vazio";
 
 	let possibilidades = "Esolha entre: ";
 
+	firebase.firelord.REF
+		.child('usuarios')
+		.child('Lavras')
+		.child('Disponiveis')
+		.once('value', function(snap){
+
+			console.log("added:",snap.key);
+
+		});
+
+	let possibilidades = "Esolha entre: ";
 
 	sendMessage(senderId, {text: possibilidades});
 
