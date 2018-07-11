@@ -287,6 +287,6 @@ function sendAnswer(senderId) {
 
 	let possibilidades = "Esolha entre: ";
 */
-	sendMessage(senderId, "Teste");
+	sendMessage(senderId, {text: "teste"});
 
 }
