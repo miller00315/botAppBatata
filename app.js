@@ -284,8 +284,6 @@ async function sendAnswer(senderId) {
 
 		});
 
-	let possibilidades = "Esolha entre: ";
-
 	sendMessage(senderId, {text: possibilidades});
 
 }
