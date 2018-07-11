@@ -1,3 +1,4 @@
+require('./services/firebase');
 var firebase 	= require('./services/firebase');
 var express 	= require("express");
 var request 	= require("request");
@@ -268,8 +269,8 @@ function sendMessage(recipientId, message) {
 }
 
 function sendAnswer(senderId) {
-/*
-	let listAnswers = [];
+
+	var temp = "vazio";
 
 	const snap = await firebase.firelord.REF
 		.child('usuarios')
@@ -277,15 +278,11 @@ function sendAnswer(senderId) {
 		.child('Disponiveis')
 		.once('value', function(snap){
 
-			var result = {};
-
-			result['resultType'] = snap.key;
-
-			listAnswers.push(result);
+			temp = "Tamanho"+ snap.numChildren();
 
 		});
-*/
-	let possibilidades = "Esolha entre: ";
+
+	let possibilidades = "Esolha entre: " + temp;
 
 	sendMessage(senderId, {text: possibilidades});
 
