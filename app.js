@@ -282,7 +282,7 @@ async function sendAnswer(senderId) {
 
 			snap.forEach(function (childSnap){
 
-				console.log("Disponiveis:","Temos" + snap.key);
+				console.log("Disponiveis:","Temos" + childSnap.key);
 			});
 
 			
