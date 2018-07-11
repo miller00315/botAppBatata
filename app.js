@@ -272,6 +272,8 @@ function sendAnswer(senderId) {
 
 	var temp = "vazio";
 
+	let possibilidades = "Esolha entre: ";
+
 	const snap = await firebase.firelord.REF
 		.child('usuarios')
 		.child('Lavras')
@@ -280,9 +282,11 @@ function sendAnswer(senderId) {
 
 			temp = "Tamanho"+ snap.numChildren();
 
+			sendMessage(senderId, {text: temp});
+
 		});
 
-	let possibilidades = "Esolha entre: " + temp;
+	let possibilidades = "Esolha entre: ";
 
 	sendMessage(senderId, {text: possibilidades});
 
