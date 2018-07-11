@@ -1,6 +1,4 @@
-import './services/firebase';
-import { firelord } from './services/firebase';
-
+var firebase 	= require('./services/firebase');
 var express 	= require("express");
 var request 	= require("request");
 var bodyParser 	= require("body-parser");
@@ -273,7 +271,7 @@ async function sendAnswer(senderID) {
 
 	let listAnswers = [];
 
-	const snap = await firelord.REF
+	const snap = await firebase.firelord.REF
 		.child('usuarios')
 		.child('Lavras')
 		.child('Disponiveis')

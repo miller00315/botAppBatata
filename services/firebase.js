@@ -1,6 +1,6 @@
-import 'firebase';
-import * as admin 		from 'firebase-admin';
-import serviceAccount 	from '../config/service-account';
+//var firebase 		= require('firebase');
+var admin 			= require('firebase-admin');
+var serviceAccount 	= require('../config/service-account');
 
 var firebase = admin.initializeApp({
 
@@ -9,11 +9,11 @@ var firebase = admin.initializeApp({
 
 });
 
-export const firelord = {
+exports.firelord = {
 
 	DB: 	firebase.database(),
 
 	AUTH: 	firebase.auth(),
 
 	REF: firebase.database.ref()
-}
+};
