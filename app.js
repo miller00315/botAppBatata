@@ -277,7 +277,7 @@ async function sendAnswer(senderID) {
 		.child('Disponiveis')
 		.once('value');
 
-	snap.forEach(snapChild =>{
+	snap.forEach(function(snapChild){
 
 		var result = {};
 
