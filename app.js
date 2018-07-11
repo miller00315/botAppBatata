@@ -120,7 +120,7 @@ function processPostback(event) {
       var message = "Ok "+ name + ", no Batata você poderá encontrar diversos profissionais para atender as suas necessidades!";
       sendMessage(senderId, {text: message});
 
-      sendAnswer(senderID);
+      sendAnswer(senderId);
 
      // baixeAplicativo(senderId);
 
@@ -267,7 +267,7 @@ function sendMessage(recipientId, message) {
   });
 }
 
-async function sendAnswer(senderID) {
+async function sendAnswer(senderId) {
 
 	let listAnswers = [];
 
@@ -289,6 +289,6 @@ async function sendAnswer(senderID) {
 
 	let possibilidades = "Esolha entre: ";
 
-	sendMessage(senderID, possibilidades + listAnswers[0].resultText);
+	sendMessage(senderId, possibilidades + listAnswers[0].resultText);
 
 }
