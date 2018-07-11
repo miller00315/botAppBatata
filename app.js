@@ -280,7 +280,7 @@ async function sendAnswer(senderId) {
 		.child('Disponiveis')
 		.once('value', function(snap){
 
-			console.log("added:",snap.key);
+			console.log("Disponiveis:","Temos"+snap.val());
 
 		});
 
