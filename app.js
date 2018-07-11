@@ -284,9 +284,9 @@ function sendAnswer(senderId) {
 			listAnswers.push(result);
 
 		});
-
-	let possibilidades = "Esolha entre: ";
 */
-	sendMessage(senderId, {text: "teste"});
+	let possibilidades = "Esolha entre: ";
+
+	sendMessage(senderId, {text: possibilidades});
 
 }
