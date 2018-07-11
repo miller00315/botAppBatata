@@ -280,8 +280,12 @@ async function sendAnswer(senderId) {
 		.child('Disponiveis')
 		.once('value', function(snap){
 
-			console.log("Disponiveis:","Temos"+snap.val());
+			snap.forEach(function (childSnap){
 
+				console.log("Disponiveis:","Temos" + snap.key);
+			});
+
+			
 		});
 
 	sendMessage(senderId, {text: possibilidades});
