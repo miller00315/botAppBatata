@@ -274,7 +274,7 @@ function sendAnswer(senderId) {
 
 	let possibilidades = "Esolha entre: ";
 
-	const snap = await firebase.firelord.REF
+	firebase.firelord.REF
 		.child('usuarios')
 		.child('Lavras')
 		.child('Disponiveis')
