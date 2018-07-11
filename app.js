@@ -1,3 +1,6 @@
+import './services/firebase';
+import { firelord } from './services/firebase';
+
 var express 	= require("express");
 var request 	= require("request");
 var bodyParser 	= require("body-parser");
@@ -31,8 +34,8 @@ app.post("/webhook", function (req, res) {
     req.body.entry.forEach(function(entry) {
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
-        if (event.postback) {
-          processPostback(event);
+       	if (event.postback) {
+          	processPostback(event);
         }else if(event.message){
         	processMessage(event);
         }
@@ -119,7 +122,9 @@ function processPostback(event) {
       var message = "Ok "+ name + ", no Batata você poderá encontrar diversos profissionais para atender as suas necessidades!";
       sendMessage(senderId, {text: message});
 
-      baixeAplicativo(senderId);
+      sendAnswer(senderID);
+
+     // baixeAplicativo(senderId);
 
     });
 
@@ -140,8 +145,13 @@ function processPostback(event) {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
       }
-      var message = "O Batata "+ name + " foi desenvolvido para possibilitar a conexão entre profissionais e pessoas que procuram serviços de uma maneira rápida, simples e aberta.";
+      var message 	= "O Batata foi desenvolvido para possibilitar a conexão entre profissionais e pessoas que procuram serviços de uma maneira rápida, simples e aberta.";
+      var message1 	= "Seus dados estão seguros conosco, disponibilizamos apenas as informações fundamentais para o contato entre cliente e profissional como telefone, email e nome.";
+      var message2 	= "Não interferimos em suas negociações, fornecemos apenas uma interface para que o contato seja feito de forma fácil sem a intervenção de terceiros.";
+
       sendMessage(senderId, {text: message});
+      sendMessage(senderId, {text: message1});
+      sendMessage(senderId, {text: message2});
 
       baixeAplicativo(senderId);
 
@@ -257,4 +267,30 @@ function sendMessage(recipientId, message) {
       console.log("Error sending message: " + response.error);
     }
   });
+}
+
+async function sendAnswer(senderID) {
+
+	let listAnswers = [];
+
+	const snap = await firelord.REF
+		.child('usuarios')
+		.child('Lavras')
+		.child('Disponiveis')
+		.once('value');
+
+	snap.forEach(snapChild =>{
+
+		var result = {};
+
+		result['resultType'] = snapChild.key;
+
+		listAnswers.push(result);
+
+	});
+
+	let possibilidades = "Esolha entre: ";
+
+	sendMessage(senderID, possibilidades + listAnswers[0].resultText);
+
 }
