@@ -1,4 +1,4 @@
-//var firebase 		= require('firebase');
+require('firebase');
 var admin 			= require('firebase-admin');
 var serviceAccount 	= require('../config/service-account.json');
 
@@ -15,5 +15,5 @@ exports.firelord = {
 
 	AUTH: 	firebase.auth(),
 
-	REF: firebase.database.ref()
+	REF: 	firebase.database().ref(),
 };
