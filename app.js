@@ -360,7 +360,7 @@ function randomResult (senderId, arraySnap) {
 
     let profissional = arraySnap[randNum];
 
-    console.log("Profissional", "" + arraySnap.length + ", " + randNum+ ", "+ profissional);
+    console.log("Profissional", "" + arraySnap.length + ", " + randNum+ ", "+ JSON.stringify(profissional,null, ", ");
 
     sendMessage(senderId, {text: resposta1});
 
