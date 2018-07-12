@@ -3,7 +3,7 @@ var firebase 	   = require('./services/firebase');
 var express 	   = require("express");
 var request 	   = require("request");
 var bodyParser 	 = require("body-parser");
-var normalizer   = require("normalize");
+var normalizer   = require("normalize-strings");
 
 var app = express();
 
