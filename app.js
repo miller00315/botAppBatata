@@ -393,10 +393,10 @@ function contatoEmpresa(senderId, empresa){
   let resposta7 = ". Entre em contato e tenha acesso a tudo que precisa.";
 
   let resposta =  resposta1 + empresa.nome + 
-                  resposta2 + resposta3 + empresa.telefone + 
+                  resposta3 + empresa.telefone + 
                   resposta4 + empresa.email +
                   resposta5 + empresa.site + 
-                  resposta6 + empresa.endereco +
+                  resposta6 + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado +
                   resposta7;
 
   sendMessage(senderId, {text: resposta});
