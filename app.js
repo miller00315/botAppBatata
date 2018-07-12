@@ -369,8 +369,8 @@ function randomResult (senderId, arraySnap) {
 
     sendMessage(senderId, {text: resposta});
 
-    if(profissional.empresa !== null)
-      contatoEmpresa(senderId, profissional.empresa);
+    //if(profissional.empresa !== null)
+     // contatoEmpresa(senderId, profissional.empresa);
 
     baixeAplicativo(senderId);
 
@@ -383,6 +383,8 @@ function randomResult (senderId, arraySnap) {
 } 
 
 function contatoEmpresa(senderId, empresa){
+
+
 
   let resposta1 = "Caso precise de algo, entre em contato com ";
   let resposta2 = ", ";
