@@ -348,7 +348,7 @@ function randomResult (senderId, arraySnap) {
   let resposta3 = "Ele é especialista em ";
   let resposta4 = "Você pode entrer em contato através do telefone ";
   let resposta5 = "ou do email. ";
-  let resposta5 = "Não perca tempo e entre em contato!"
+  let resposta6 = "Não perca tempo e entre em contato!"
 
   let min          = Math.ceil(0);
 
