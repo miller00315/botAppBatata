@@ -313,7 +313,7 @@ async function sendResult(senderId, pesquisa) {
 
       if(snap !== null){
 
-        let arraySnap = [];
+        var arraySnap = [];
 
         snap.forEach(function(childSnap){
 
