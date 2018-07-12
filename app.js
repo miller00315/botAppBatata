@@ -345,9 +345,9 @@ function randomResult (senderId, arraySnap) {
 
   let resposta1 = "Aproveite, nos encontramos um ";
   let resposta2 = ", seu nome é ";
-  let resposta3 = ", ele é especialista em ";
+  let resposta3 = ", sua especialidade em ";
   let resposta4 = ", você pode entrar em contato através do telefone ";
-  let resposta5 = ", ou do email. ";
+  let resposta5 = ", ou do email ";
   let resposta6 = ". Não perca tempo e entre em contato!"
 
   let min          = Math.ceil(0);
@@ -367,9 +367,10 @@ function randomResult (senderId, arraySnap) {
     resposta5 + profissional.email +
     resposta6;
 
-    console.log("Profissional", resposta);
-
     sendMessage(senderId, {text: resposta});
+
+    if(profissional.empresa !== null)
+      contatoEmpresa(senderId, profissional.empresa);
 
     baixeAplicativo(senderId);
 
@@ -380,5 +381,26 @@ function randomResult (senderId, arraySnap) {
   }
 
 } 
+
+function contatoEmpresa(senderId, empresa){
+
+  let resposta1 = "Caso precise de algo, entre em contato com ";
+  let resposta2 = ", ";
+  let resposta3 = ", através telefone ";
+  let resposta4 = ", do email ";
+  let resposta5 = ", você pode também acessar a página ";
+  let resposta6 = " ou ir ao endereço ";
+  let resposta7 = ". Entre em contato e tenha acesso a tudo que precisa.";
+
+  let resposta =  resposta1 + empresa.nome + 
+                  resposta2 + resposta3 + empresa.telefone + 
+                  resposta4 + empresa.email +
+                  resposta5 + empresa.site + 
+                  resposta6 + empresa.endereco +
+                  resposta7;
+
+  sendMessage(senderId, {text: resposta});
+
+}
 
 
