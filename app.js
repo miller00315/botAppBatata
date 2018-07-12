@@ -346,7 +346,7 @@ function randomResult (senderId, arraySnap) {
   let resposta1 = "Aproveite, nos encontramos um ";
   let resposta2 = "seu nome é ";
   let resposta3 = "Ele é especialista em ";
-  let resposta4 = "Você pode entrer em contato através do telefone ";
+  let resposta4 = "Você pode entrar em contato através do telefone ";
   let resposta5 = "ou do email. ";
   let resposta6 = "Não perca tempo e entre em contato!"
 
@@ -356,11 +356,20 @@ function randomResult (senderId, arraySnap) {
 
   let randNum      = Math.floor(Math.random() * (max - min) + min);
 
-  let profissional = arraySnap[randNum];
+  if(randNum < arraySnap.length){
 
-  console.log("Profissional", "" + arraySnap.length + ", " + randNum);
+    let profissional = arraySnap[randNum];
 
-  sendMessage(senderId, {text: resposta1});
+    console.log("Profissional", "" + arraySnap.length + ", " + randNum+ ", "+ profissional.key);
+
+    sendMessage(senderId, {text: resposta1});
+
+  }else{
+
+    sendMessage(senderId, {text: "Desculpe, me confundi. Poderia iniciar novamente?"});
+
+  }
+
 } 
 
 
