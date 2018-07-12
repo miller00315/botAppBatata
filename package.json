@@ -21,6 +21,7 @@
     "firebase": "^5.2.0",
     "firebase-admin": "^5.12.1",
     "mongoose": "^5.2.1",
+    "normalize-strings": "^1.1.0",
     "request": "^2.87.0"
   }
 }

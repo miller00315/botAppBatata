@@ -1,8 +1,9 @@
 require('./services/firebase');
-var firebase 	= require('./services/firebase');
-var express 	= require("express");
-var request 	= require("request");
-var bodyParser 	= require("body-parser");
+var firebase 	   = require('./services/firebase');
+var express 	   = require("express");
+var request 	   = require("request");
+var bodyParser 	 = require("body-parser");
+var normalizer   = require("normalize");
 
 var app = express();
 
@@ -186,7 +187,7 @@ function processMessage(event) {
           	break;
 
         default:
-          	sendMessage(senderId, {text: "Desculpe, não entendi sua mensagem."});
+          	sendResult(senderId, formattedMsg);
       }
     } else if (message.attachments) {
       sendMessage(senderId, {text: "Desculpe, não entendi sua mensagem."});
@@ -270,9 +271,8 @@ function sendMessage(recipientId, message) {
 
 async function sendAnswer(senderId) {
 
-	var temp = "vazio";
-
-	let possibilidades = "Esolha entre: ";
+	let possibilidades = "Você poderá optar entre as seguintes opções: ";
+	let explicacao = ". Insira o profissional dentre os apresentados e envie-nos a mensagem, deste modo podemos enviar o contato de um profissional!"
 
 	firebase.firelord.REF
 		.child('usuarios')
@@ -296,6 +296,71 @@ async function sendAnswer(senderId) {
 			sendMessage(senderId, {text: final});
 		});
 
-	sendMessage(senderId, {text: possibilidades});
+}
+
+async function sendResult(senderId, pesquisa) {
+
+  let profissional = normalizer(pesquisa);
+
+  firebase.firelord.REF
+    .child('usuarios')
+    .child('Lavras')
+    .child('profissionais')
+    .child('Padrao')
+    .child('comum')
+    .child(profissional)
+    .once('value', function(snap){
+
+      if(snap !== null){
+
+        let arraySnap = [];
+
+        snap.forEach(function(childSnap){
+
+          arraySnap.push(childSnap.val())
+
+        });
+
+        if(arraySnap.length > 0){
+
+          randomResult(senderId, arraySnap);
+
+        }else{
+
+          sendMessage(senderId, {text: "Desculpe não encontramos o profissional que você procura."});
+          sendAnswer(senderId);
+        }
+
+      }else{
+
+        sendMessage(senderId, {text: "Desculpe não encontramos o profissional que você procura."});
+        sendAnswer(senderId);
+      }
+
+    });
 
 }
+
+function randomResult (senderId, arraySnap) {
+
+  let resposta1 = "Aproveite, nos encontramos um ";
+  let resposta2 = "seu nome é ";
+  let resposta3 = "Ele é especialista em ";
+  let resposta4 = "Você pode entrer em contato através do telefone ";
+  let resposta5 = "ou do email. ";
+  let resposta5 = "Não perca tempo e entre em contato!"
+
+  let min          = Math.ceil(0);
+
+  let max          = Math.floor(Object.keys(arraySnap).length);
+
+  let randNum      = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  let profissional = arraySnap[randNum];
+
+  console.log("Profissional", profissional.key);
+
+  sendMessage(senderId, {text: resposta1});
+} 
+
+
