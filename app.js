@@ -354,7 +354,7 @@ function randomResult (senderId, arraySnap) {
 
   let max          = Math.floor(Object.keys(arraySnap).length);
 
-  let randNum      = (Math.random() * (max - min) + min);
+  let randNum      = Math.floor(Math.random() * (max - min) + min);
 
   let profissional = arraySnap[randNum];
 
