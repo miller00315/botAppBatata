@@ -344,11 +344,11 @@ async function sendResult(senderId, pesquisa) {
 function randomResult (senderId, arraySnap) {
 
   let resposta1 = "Aproveite, nos encontramos um ";
-  let resposta2 = "seu nome é ";
-  let resposta3 = "Ele é especialista em ";
-  let resposta4 = "Você pode entrar em contato através do telefone ";
-  let resposta5 = "ou do email. ";
-  let resposta6 = "Não perca tempo e entre em contato!"
+  let resposta2 = ", seu nome é ";
+  let resposta3 = ", ele é especialista em ";
+  let resposta4 = ", você pode entrar em contato através do telefone ";
+  let resposta5 = ", ou do email. ";
+  let resposta6 = ". Não perca tempo e entre em contato!"
 
   let min          = Math.ceil(0);
 
@@ -360,9 +360,18 @@ function randomResult (senderId, arraySnap) {
 
     let profissional = arraySnap[randNum];
 
-    console.log("Profissional", "" + arraySnap.length + ", " + randNum+ ", "+ JSON.stringify(profissional,null, ", "));
+    let resposta = resposta1 + profissional.profissao + 
+    resposta2 + profissional.nome + 
+    resposta3 + profissional.especializacao + 
+    resposta4 + profissional.telefone +
+    resposta5 + profissional.email +
+    resposta6;
 
-    sendMessage(senderId, {text: resposta1});
+    console.log("Profissional", resposta);
+
+    sendMessage(senderId, {text: resposta});
+
+    baixeAplicativo(senderId);
 
   }else{
 
