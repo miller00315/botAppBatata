@@ -354,11 +354,11 @@ function randomResult (senderId, arraySnap) {
 
   let max          = Math.floor(Object.keys(arraySnap).length);
 
-  let randNum      = Math.floor(Math.random() * (max - min + 1)) + min;
+  let randNum      = Math.floor(Math.random() * (max - min)) + min;
 
   let profissional = arraySnap[randNum];
 
-  console.log("Profissional", "" + arraySnap.length);
+  console.log("Profissional", "" + arraySnap.length + "" + randNum);
 
   sendMessage(senderId, {text: resposta1});
 } 
