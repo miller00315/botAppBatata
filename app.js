@@ -450,7 +450,7 @@ function botaoEmpresa(senderId, empresa){
     }
   }
 
-  sendMessage(sender, messageData);
+  sendMessage(senderId, messageData);
 
 }
 
