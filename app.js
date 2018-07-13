@@ -4,6 +4,7 @@ var express 	   = require("express");
 var request 	   = require("request");
 var bodyParser 	 = require("body-parser");
 var normalizer   = require("normalize-strings");
+var openUrl      = require("openurl");
 
 var app = express();
 
@@ -145,9 +146,9 @@ function processPostback(event) {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
       }
-      var message 	= "O Batata foi desenvolvido para possibilitar a conexão entre profissionais e pessoas que procuram serviços de uma maneira rápida, simples e aberta.";
-      var message1 	= "Seus dados estão seguros conosco, disponibilizamos apenas as informações fundamentais para o contato entre cliente e profissional como telefone, email e nome.";
-      var message2 	= "Não interferimos em suas negociações, fornecemos apenas uma interface para que o contato seja feito de forma fácil sem a intervenção de terceiros.";
+      let message 	= "O Batata foi desenvolvido para possibilitar a conexão entre profissionais e pessoas que procuram serviços de uma maneira rápida, simples e aberta.";
+      let message1 	= "Seus dados estão seguros conosco, disponibilizamos apenas as informações fundamentais para o contato entre cliente e profissional como telefone, email e nome.";
+      let message2 	= "Não interferimos em suas negociações, fornecemos apenas uma interface para que o contato seja feito de forma fácil sem a intervenção de terceiros.";
 
       sendMessage(senderId, {text: message});
       sendMessage(senderId, {text: message1});
@@ -160,8 +161,35 @@ function processPostback(event) {
 
   }else{
 
-        if(aContainsB(payload, "mailto"))
-          console.log("payload comtém", payload);
+        if(aContainsB(payload, "mailto")){
+
+          request({
+              url: "https://graph.facebook.com/v2.6/" + senderId,
+              qs: {
+                access_token: process.env.PAGE_ACCESS_TOKEN,
+                fields: "first_name"
+              },
+              method: "GET"
+            }, function(error, response, body) {
+              var greeting = "";
+              if (error) {
+              console.log("Error getting user's name: " +  error);
+              } else {
+                var bodyObj = JSON.parse(body);
+                name = bodyObj.first_name;
+              }
+      
+            let email = payload.substring(7,payload.length);
+
+            console.log("payload comtém verifiquei", email);
+
+           // openurl.mailto([emial], {subject:"Olá, meu nome é " + name + "entro em contato pelo Batata",
+               //                       body:"Gostaria de verificar com vocês alguns produtos dque necessito:"});
+
+          });
+          
+
+        }
  
   }
 }
