@@ -157,6 +157,21 @@ function processPostback(event) {
     });
 
 
+  }else{
+
+    if(aContainsB(payload, "email")){
+
+      let email = payload.substring(6,payload.length);
+
+      sendMessage(senderId, {text: "Email: " + email});
+
+    }else if(aContainsB(payload, "endereco")){
+
+      let endereco = payload.substring(9,payload.length);
+
+      sendMessage(senderId, {text: "Endereço: " + endereco});
+
+    }
   }
 }
 
@@ -439,6 +454,14 @@ function botaoEmpresa(senderId, empresa){
               "type":"phone_number",
               "title":"Telefone",
               "payload":"+55" + telefone
+          }, {
+            "type": "postback",
+            "title": "Email",
+            "payload": "email-"+empresa.email,
+          }, {
+            "type": "postback",
+            "title": "Endereço",
+            "payload": "endereco-"+empresa.endereco,
           }],
         }]
       }
