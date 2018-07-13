@@ -428,7 +428,7 @@ function botaoEmpresa(senderId, empresa){
         "template_type": "generic",
         "elements": [{
           "title": "Precisando de algo conte com " + empresa.nome,
-          "subtitle": empresa.descricao + ". Visite no endereço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
+          "subtitle": empresa.descricao,
           "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
           "buttons": [{
             "type":"web_url",
@@ -440,10 +440,7 @@ function botaoEmpresa(senderId, empresa){
               "title":"Telefone",
               "payload":"+55" + telefone
           },{
-            "type":"web_url",
-                   "url":"mailto:" + empresa.email,
-                   "title":"Email",
-                   "webview_height_ratio": "full"
+            "text":"Visite no endereço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
           }],
         }]
       }
