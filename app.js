@@ -369,7 +369,7 @@ function randomResult (senderId, arraySnap) {
 
     sendMessage(senderId, {text: resposta});
 
-    if(profissional.empresa !== null)
+    if(profissional.empresa !== undefined && profissional.empresa !== null)
       contatoEmpresa(senderId, profissional.empresa);
 
     baixeAplicativo(senderId);
@@ -398,7 +398,7 @@ function contatoEmpresa(senderId, empresa){
         empresa.site      !== undefined &&
         empresa.endereco  !== undefined &&
         empresa.cidade    !== undefined &&
-        empresa.estado    !== undefined){
+        empresa.estado    !== undefined ){
 
       let resposta =  resposta1 + empresa.nome + 
                       resposta2 + empresa.telefone + 
