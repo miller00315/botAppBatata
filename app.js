@@ -158,6 +158,9 @@ function processPostback(event) {
     });
 
 
+  }else{
+
+
   }
 }
 
@@ -429,7 +432,7 @@ function botaoEmpresa(senderId, empresa){
         "template_type": "generic",
         "elements": [{
           "title": "Precisando de algo conte com " + empresa.nome,
-          "subtitle": empresa.descricao + "visite no endereço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
+          "subtitle": empresa.descricao + ". Visite no endereço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
           "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
           "buttons": [{
             "type":"web_url",
@@ -452,6 +455,10 @@ function botaoEmpresa(senderId, empresa){
 
   sendMessage(senderId, messageData);
 
+}
+
+function aContainsB (a, b) {
+    return a.indexOf(b) >= 0;
 }
 
 
