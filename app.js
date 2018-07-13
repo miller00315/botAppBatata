@@ -272,7 +272,7 @@ function sendMessage(recipientId, message) {
 async function sendAnswer(senderId) {
 
 	let possibilidades = "Você poderá optar entre as seguintes opções: ";
-	let explicacao = ". Insira o profissional dentre os apresentados e envie-nos a mensagem, deste modo podemos enviar o contato de um profissional!"
+	let explicacao = ". Insira o profissional dentre os apresentados e envie-nos a mensagem, assim podemos retornar o contato de um profissional inscrito no Batata!"
 
 	firebase.firelord.REF
 		.child('usuarios')
@@ -291,7 +291,7 @@ async function sendAnswer(senderId) {
 
 			var resultado = arraySnap.join(', ');
 
-			var final = possibilidades + resultado;
+			var final = possibilidades + resultado + explicacao;
 
 			sendMessage(senderId, {text: final});
 		});
@@ -371,6 +371,7 @@ function randomResult (senderId, arraySnap) {
 
     if(profissional.empresa !== undefined && profissional.empresa !== null)
       contatoEmpresa(senderId, profissional.empresa);
+      
 
     baixeAplicativo(senderId);
 
@@ -400,24 +401,26 @@ function contatoEmpresa(senderId, empresa){
         empresa.cidade    !== undefined &&
         empresa.estado    !== undefined ){
 
-      let resposta =  resposta1 + empresa.nome + 
+    /*  let resposta =  resposta1 + empresa.nome + 
                       resposta2 + empresa.telefone + 
                       resposta3 + empresa.email +
                       resposta4 + empresa.site + 
                       resposta5 + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado +
                       resposta6;
 
-      sendMessage(senderId, {text: resposta});
+      sendMessage(senderId, {text: resposta});*/
+
+      botaoEmpresa(senderId, empresa);
 
     }
   }
 
 }
 
-/*
+
 function botaoEmpresa(senderId, empresa){
 
-  var telefone = empresa.telefone.replace(/[^\d]+/g,'')
+  var telefone = empresa.telefone.replace(/[^\d]+/g,'');
 
   let messageData = {
     "attachment": {
@@ -451,5 +454,4 @@ function botaoEmpresa(senderId, empresa){
 
 }
 
-*/
 
