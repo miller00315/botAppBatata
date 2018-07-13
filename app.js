@@ -429,8 +429,7 @@ function botaoEmpresa(senderId, empresa){
         "template_type": "generic",
         "elements": [{
           "title": "Precisando de algo conte com " + empresa.nome,
-          "subtitle": empresa.descricao,
-          "text":"Entre em contato pelo email" + empresa.email + ", ou vá ao enredeço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
+          "subtitle": empresa.descricao + ". Entre em contato pelo email " + empresa.email + ", ou vá ao enredeço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
           "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
           "buttons": [{
             "type":"web_url",
