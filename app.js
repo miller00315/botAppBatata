@@ -457,11 +457,7 @@ function botaoEmpresa(senderId, empresa){
           }, {
             "type": "postback",
             "title": "Email",
-            "payload": "email-"+empresa.email,
-          }, {
-            "type": "postback",
-            "title": "Endereço",
-            "payload": "endereco-"+empresa.endereco,
+            "payload": "email_"+empresa.email,
           }],
         }]
       }
