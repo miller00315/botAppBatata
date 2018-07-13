@@ -183,14 +183,12 @@ function processPostback(event) {
 
             console.log("payload comtém verifiquei", email);
 
-            openUrl.mailto([emial], {subject:"Solicitação de" + name + "pelo app Batata",
+            openUrl.mailto([email], {subject:"Solicitação de" + name + "pelo app Batata",
                                       body:"Gostaria de verificar com vocês alguns produtos dque necessito: "});
 
-          });
+        });
           
-
-        }
- 
+    }
   }
 }
 
