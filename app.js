@@ -160,7 +160,8 @@ function processPostback(event) {
 
   }else{
 
-        console.log("payload comtém", payload);
+        if(aContainsB(payload, "mailto"))
+          console.log("payload comtém", payload);
  
   }
 }
