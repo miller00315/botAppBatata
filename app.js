@@ -4,8 +4,6 @@ var express 	   = require("express");
 var request 	   = require("request");
 var bodyParser 	 = require("body-parser");
 var normalizer   = require("normalize-strings");
-var openUrl      = require("openurl");
-
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -159,33 +157,6 @@ function processPostback(event) {
     });
 
 
-  }else{
-
-        if(aContainsB(payload, "mailto")){
-
-          request({
-              url: "https://graph.facebook.com/v2.6/" + senderId,
-              qs: {
-                access_token: process.env.PAGE_ACCESS_TOKEN,
-                fields: "first_name"
-              },
-              method: "GET"
-            }, function(error, response, body) {
-              var greeting = "";
-              if (error) {
-              console.log("Error getting user's name: " +  error);
-              } else {
-                var bodyObj = JSON.parse(body);
-                name = bodyObj.first_name;
-              }
-      
-            let email = payload.substring(7,payload.length);
-
-            console.log("payload comtém verifiquei", email);
-
-        });
-          
-    }
   }
 }
 
@@ -467,11 +438,12 @@ function botaoEmpresa(senderId, empresa){
             },{
               "type":"phone_number",
               "title":"Telefone",
-              "payload":"+55"+telefone
+              "payload":"+55" + telefone
           },{
-            "type": "postback",
-            "title": "Email",
-            "payload": "mailto_" + empresa.email
+            "type":"web_url",
+                   "url":"mailto:" + empresa.email,
+                   "title":"Email",
+                   "webview_height_ratio": "full"
           }],
         }]
       }
