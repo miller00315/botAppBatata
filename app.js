@@ -440,11 +440,10 @@ function botaoEmpresa(senderId, empresa){
               "type":"phone_number",
               "title":"Telefone",
               "payload":"+55"+telefone
-          },
-          , {
+          },{
             "type": "postback",
             "title": "Email",
-            "payload": "{mailto/" + empresa.email"}"
+            "payload": "mailto/" + empresa.email
           }],
         }]
       }
