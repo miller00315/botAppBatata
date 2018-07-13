@@ -160,7 +160,8 @@ function processPostback(event) {
 
   }else{
 
-
+        console.log("payload comtém", payload);
+ 
   }
 }
 
@@ -446,7 +447,7 @@ function botaoEmpresa(senderId, empresa){
           },{
             "type": "postback",
             "title": "Email",
-            "payload": "mailto/" + empresa.email
+            "payload": "mailto_" + empresa.email
           }],
         }]
       }
