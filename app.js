@@ -369,8 +369,8 @@ function randomResult (senderId, arraySnap) {
 
     sendMessage(senderId, {text: resposta});
 
-    //if(profissional.empresa !== null)
-     // contatoEmpresa(senderId, profissional.empresa);
+    if(profissional.empresa !== null)
+      contatoEmpresa(senderId, profissional.empresa);
 
     baixeAplicativo(senderId);
 
@@ -384,25 +384,72 @@ function randomResult (senderId, arraySnap) {
 
 function contatoEmpresa(senderId, empresa){
 
-
-
   let resposta1 = "Caso precise de algo, entre em contato com ";
-  let resposta2 = ", ";
-  let resposta3 = ", através telefone ";
-  let resposta4 = ", do email ";
-  let resposta5 = ", você pode também acessar a página ";
-  let resposta6 = " ou ir ao endereço ";
-  let resposta7 = ". Entre em contato e tenha acesso a tudo que precisa.";
+  let resposta2 = ", através telefone ";
+  let resposta3 = ", do email ";
+  let resposta4 = ", você pode também acessar a página ";
+  let resposta5 = " ou ir ao endereço ";
+  let resposta6 = ". Entre em contato e tenha acesso a tudo que precisa.";
 
-  let resposta =  resposta1 + empresa.nome + 
-                  resposta3 + empresa.telefone + 
-                  resposta4 + empresa.email +
-                  resposta5 + empresa.site + 
-                  resposta6 + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado +
-                  resposta7;
+  if(empresa !== null){
+    if( empresa.nome      !== undefined && 
+        empresa.telefone  !== undefined &&
+        empresa.email     !== undefined &&
+        empresa.site      !== undefined &&
+        empresa.endereco  !== undefined &&
+        empresa.cidade    !== undefined &&
+        empresa.estado    !== undefined){
 
-  sendMessage(senderId, {text: resposta});
+      let resposta =  resposta1 + empresa.nome + 
+                      resposta2 + empresa.telefone + 
+                      resposta3 + empresa.email +
+                      resposta4 + empresa.site + 
+                      resposta5 + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado +
+                      resposta6;
+
+      sendMessage(senderId, {text: resposta});
+
+    }
+  }
 
 }
 
+/*
+function botaoEmpresa(senderId, empresa){
+
+  var telefone = empresa.telefone.replace(/[^\d]+/g,'')
+
+  let messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Precisando de algo conte com:",
+          "subtitle": empresa.nome,
+          "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
+          "buttons": [{
+            "type":"web_url",
+                  "url": empresa.site,
+                  "title":"Acesse a página",
+                  "webview_height_ratio": "full"
+            }, {
+              "type": "postback",
+              "title": "Quero saber mais",
+              "payload": "saber",
+            },{
+              "type":"phone_number",
+              "title":"Telefone",
+              "payload":"+55"+telefone
+          }],
+        }]
+      }
+    }
+  }
+
+  sendMessage(sender, messageData);
+
+}
+
+*/
 
