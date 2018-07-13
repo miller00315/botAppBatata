@@ -439,8 +439,6 @@ function botaoEmpresa(senderId, empresa){
               "type":"phone_number",
               "title":"Telefone",
               "payload":"+55" + telefone
-          },{
-            "text":"Visite no endereço " + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado,
           }],
         }]
       }
