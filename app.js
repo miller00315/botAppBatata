@@ -97,6 +97,8 @@ function processPostback(event) {
 
       baixeAplicativo(senderId);
 
+      sendMessage(senderId, {text: "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura."});
+
       //sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
 
     });
@@ -197,8 +199,13 @@ function processMessage(event) {
         	break;
         
         case "profissional":
-          	sendMessage(senderId, {text: "Legal, Assista o tutorial no link e saiba como oferecer seus serviços no Batata!"});
-          	break;
+          sendMessage(senderId, {text: "Legal, Assista o tutorial no link e saiba como oferecer seus serviços no Batata!"});
+          break;
+
+        case "oi":
+          sendMessageWithButton(senderId, message);
+          break;
+
 
         default:
           	sendResult(senderId, formattedMsg);
@@ -415,15 +422,6 @@ function contatoEmpresa(senderId, empresa){
         empresa.cidade    !== undefined &&
         empresa.estado    !== undefined ){
 
-    /*  let resposta =  resposta1 + empresa.nome + 
-                      resposta2 + empresa.telefone + 
-                      resposta3 + empresa.email +
-                      resposta4 + empresa.site + 
-                      resposta5 + empresa.endereco + " " + empresa.cidade + "-" + empresa.estado +
-                      resposta6;
-
-      sendMessage(senderId, {text: resposta});*/
-
       botaoEmpresa(senderId, empresa);
 
     }
@@ -465,6 +463,8 @@ function botaoEmpresa(senderId, empresa){
   }
 
   sendMessage(senderId, messageData);
+
+  sendMessage(senderId, {text: "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura."});
 
 }
 
