@@ -96,11 +96,9 @@ function processPostback(event) {
       sendMessage(senderId, {text: message});
 
       baixeAplicativo(senderId);
-
-      sendMessage(senderId, {text: "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura."});
-
-      //sendMessage(senderId, {text: "Baixe o aplicativo na google play através do link https://play.google.com/store/apps/details?id=com.gikacredgmail.gika, e facilite sua vida com o Batata!"});
-
+      
+      sendMessageTimed(senderId);
+      
     });
 
   }else if(payload === "cliente"){
@@ -301,7 +299,7 @@ async function sendAnswer(senderId) {
 		.child('Disponiveis')
 		.once('value', function(snap){
 
-			var arraySnap = [];
+			let arraySnap = [];
 
 			snap.forEach(function (childSnap){
 
@@ -310,13 +308,20 @@ async function sendAnswer(senderId) {
 
 			console.log(arraySnap.join(', '));
 
-			var resultado = arraySnap.join(', ');
+			let resultado = arraySnap.join(', ');
 
-			var final = possibilidades + resultado + explicacao;
+			let final = possibilidades + resultado + explicacao;
 
 			sendMessage(senderId, {text: final});
 		});
 
+}
+
+function sendMessageTimed(senderId){
+
+  let message = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
+
+  var timeSend = setTimeout(sendMessage(senderId, {text: message}), 3000);
 }
 
 async function sendResult(senderId, pesquisa) {
@@ -334,7 +339,7 @@ async function sendResult(senderId, pesquisa) {
 
       if(snap !== null){
 
-        var arraySnap = [];
+        let arraySnap = [];
 
         snap.forEach(function(childSnap){
 
@@ -393,7 +398,6 @@ function randomResult (senderId, arraySnap) {
     if(profissional.empresa !== undefined && profissional.empresa !== null)
       contatoEmpresa(senderId, profissional.empresa);
       
-
     baixeAplicativo(senderId);
 
   }else{
@@ -464,7 +468,7 @@ function botaoEmpresa(senderId, empresa){
 
   sendMessage(senderId, messageData);
 
-  sendMessage(senderId, {text: "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura."});
+  sendMessageTimed(senderId);
 
 }
 
