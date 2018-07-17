@@ -98,7 +98,7 @@ function processPostback(event) {
       baixeAplicativo(senderId);
       
       sendMessageTimed(senderId);
-      
+
     });
 
   }else if(payload === "cliente"){
@@ -321,7 +321,7 @@ function sendMessageTimed(senderId){
 
   let message = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
 
-  var timeSend = setTimeout(sendMessage(senderId, {text: message}), 3000);
+  setTimeout(function(senderId){sendMessage(senderId, {text: message})}, 3000);
 }
 
 async function sendResult(senderId, pesquisa) {
