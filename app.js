@@ -321,7 +321,7 @@ function sendMessageTimed(senderId){
 
   let message = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
 
-  setTimeout(function(senderId){sendMessage(senderId, {text: message})}, 3000);
+  sendMessage(senderId, {text: message});
 }
 
 async function sendResult(senderId, pesquisa) {
