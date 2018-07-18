@@ -477,7 +477,6 @@ function botaoEmpresa(senderId, empresa){
 
   sendMessage(senderId, messageData);
   botaoEndereco(senderId,empresa);
-  sendMessageTimed(senderId);
 
 }
 
@@ -492,12 +491,12 @@ function botaoEndereco(senderId, empresa){
         "template_type": "generic",
         "elements": [{
           "title": "Vá até " + empresa.nome,
-          "subtitle": empresa.endereco + ", "+ empresa.cidade+" - "+empresa.estado,
+          "subtitle": empresa.endereco,
           "buttons": [
             {
               "type":"web_url",
-              "url": empresa.site,
-              "title":"Acesse a página",
+              "url": "https://www.google.com/maps/?q="+ empresa.endereco,
+              "title":"Mapa",
               "webview_height_ratio": "full"
             }
           ]
@@ -506,7 +505,7 @@ function botaoEndereco(senderId, empresa){
     }
   }
 
-  sendMessage(senderId, messageData);
+  var enviarEndereco = setTimeout(function(){sendMessage(senderId, messageData)},2000);
   sendMessageTimed(senderId);
 
 }
