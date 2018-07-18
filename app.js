@@ -460,12 +460,6 @@ function botaoEmpresa(senderId, empresa){
               "url": empresa.site,
               "title":"Acesse a página",
               "webview_height_ratio": "full"
-            },
-            {
-              "type":"web_url",
-              "url": empresa.site,
-              "title":"Acesse a página",
-              "webview_height_ratio": "full"
             }, {
               "type":"phone_number",
               "title":"Telefone",
@@ -474,6 +468,37 @@ function botaoEmpresa(senderId, empresa){
               "type": "postback",
               "title": "Email",
               "payload": "email_"+empresa.email,
+            }
+          ]
+        }]
+      }
+    }
+  }
+
+  sendMessage(senderId, messageData);
+  botaoEndereco(senderId,empresa);
+  sendMessageTimed(senderId);
+
+}
+
+function botaoEndereco(senderId, empresa){
+
+  var telefone = empresa.telefone.replace(/[^\d]+/g,'');
+
+  let messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Vá até " + empresa.nome,
+          "subtitle": empresa.endereco + ", "+ empresa.cidade" - "+empresa.estado,
+          "buttons": [
+            {
+              "type":"web_url",
+              "url": empresa.site,
+              "title":"Acesse a página",
+              "webview_height_ratio": "full"
             }
           ]
         }]
