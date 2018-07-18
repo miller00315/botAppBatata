@@ -441,52 +441,6 @@ function contatoEmpresa(senderId, empresa){
 
 }
 
-function openMap(senderId){
-
-
-  let messageData = {
-    "object": "page",
-    "entry": [
-        {
-            "id": "1384358948246110",
-            "time": 1473197244135,
-            "messaging": [
-                {
-                    "sender": {
-                        "id": senderId
-                    },
-                    "recipient": {
-                        "id": "1384358948246110"
-                    },
-                    "timestamp": 1473197244008,
-                    "message": {
-                        "mid": "mid.1473197243814:3803076c5438a13036",
-                        "seq": 7646,
-                        "attachments": [
-                            {
-                                "title": "Hung's Location",
-                                "url": "https://www.facebook.com/l.php?u=https%3A%2F%2Fwww.bing.com%2Fmaps%2Fdefault.aspx%3Fv%3D2%26pc%3DFACEBK%26mid%3D8100%26where1%3D40.070706608101%252C%2B-82.525680894134%26FORM%3DFBKPL1%26mkt%3Den-US&h=mAQE9bbu3&s=1&enc=AZPC_QlKfUFl7dehzlPuSpsio7LMKtRwyM58oaqUtt89CfKBofXVoW48cYrASUdCm-MYSpFMI2ejgmTR90taFN4wyv0aCYNH_GG3MR5sEe62NQ",
-                                "type": "location",
-                                "payload": {
-                                    "coordinates": {
-                                        "lat": 40.070706608101,
-                                        "long": -82.525680894134
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        }
-    ]
-  }
-
-  sendMessage(senderId, messageData);
-
-}
-
-
 function botaoEmpresa(senderId, empresa){
 
   var telefone = empresa.telefone.replace(/[^\d]+/g,'');
@@ -514,6 +468,11 @@ function botaoEmpresa(senderId, empresa){
               "type": "postback",
               "title": "Email",
               "payload": "email_"+empresa.email,
+          },{
+            "type":"web_url",
+            "url": "https://www.google.com/maps/?q="+empresa.endereco,
+            "title":"Endereço",
+            "webview_height_ratio": "full"
           }],
         }]
       }
