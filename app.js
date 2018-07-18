@@ -231,7 +231,7 @@ function sendMessageWithButton(sender, message){
 						"payload": "profissional",
 					}, {
 						"type": "postback",
-						"title": "Procuro serviços",
+						"title": "Procuro profissionais",
 						"payload": "cliente",
 					}],
 				}]
@@ -374,7 +374,7 @@ function randomResult (senderId, arraySnap) {
 
   let resposta1 = "Aproveite, nos encontramos um ";
   let resposta2 = ", seu nome é ";
-  let resposta3 = ", sua especialidade em ";
+  let resposta3 = ", realiza trabalhos como ";
   let resposta4 = ", você pode entrar em contato através do telefone ";
   let resposta5 = ", ou do email ";
   let resposta6 = ". Não perca tempo e entre em contato!"
