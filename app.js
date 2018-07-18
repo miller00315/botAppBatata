@@ -441,6 +441,17 @@ function contatoEmpresa(senderId, empresa){
 
 }
 
+function openMap(senderId, latitude, longitude, nomeEmpresa){
+
+
+  let messageData = {
+
+    "att"
+
+  }
+
+}
+
 
 function botaoEmpresa(senderId, empresa){
 
@@ -455,20 +466,32 @@ function botaoEmpresa(senderId, empresa){
           "title": "Precisando de algo conte com " + empresa.nome,
           "subtitle": empresa.descricao,
           "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
-          "buttons": [{
+          "buttons": [
+            {
             "type":"web_url",
                   "url": empresa.site,
                   "title":"Acesse a página",
                   "webview_height_ratio": "full"
-            },{
+            }, {
               "type":"phone_number",
               "title":"Telefone",
               "payload":"+55" + telefone
-          }, {
-            "type": "postback",
-            "title": "Email",
-            "payload": "email_"+empresa.email,
+            }, {
+              "type": "postback",
+              "title": "Email",
+              "payload": "email_"+empresa.email,
           }],
+        },
+        {
+          "title": "Hung's Location",
+          "url": "https://www.facebook.com/l.php?u=https%3A%2F%2Fwww.bing.com%2Fmaps%2Fdefault.aspx%3Fv%3D2%26pc%3DFACEBK%26mid%3D8100%26where1%3D40.070706608101%252C%2B-82.525680894134%26FORM%3DFBKPL1%26mkt%3Den-US&h=mAQE9bbu3&s=1&enc=AZPC_QlKfUFl7dehzlPuSpsio7LMKtRwyM58oaqUtt89CfKBofXVoW48cYrASUdCm-MYSpFMI2ejgmTR90taFN4wyv0aCYNH_GG3MR5sEe62NQ",
+          "type": "location",
+          "payload": {
+            "coordinates": {
+              "lat": 40.070706608101,
+              "long": -82.525680894134
+              }
+          }
         }]
       }
     }
