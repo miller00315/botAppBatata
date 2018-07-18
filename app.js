@@ -456,10 +456,10 @@ function botaoEmpresa(senderId, empresa){
           "image_url":"https://lh3.googleusercontent.com/LWvXzh4uXBeju_0vsKWP21sUKNSnFeF2aS2DE68i-nCIoYj8VEiOIpkkWUO48sBzFg=s180-rw",
           "buttons": [
             {
-            "type":"web_url",
-                  "url": empresa.site,
-                  "title":"Acesse a página",
-                  "webview_height_ratio": "full"
+              "type":"web_url",
+              "url": empresa.site,
+              "title":"Acesse a página",
+              "webview_height_ratio": "full"
             }, {
               "type":"phone_number",
               "title":"Telefone",
@@ -468,12 +468,8 @@ function botaoEmpresa(senderId, empresa){
               "type": "postback",
               "title": "Email",
               "payload": "email_"+empresa.email,
-          },{
-            "type":"web_url",
-            "url": "https://www.google.com/maps/?q="+empresa.endereco,
-            "title":"Endereço",
-            "webview_height_ratio": "full"
-          }],
+            }
+          ]
         }]
       }
     }
@@ -489,3 +485,6 @@ function aContainsB (a, b) {
 }
 
 
+/*
+
+https://www.google.com/maps/?q=18.519825,73.929449*/
