@@ -480,9 +480,6 @@ function botaoEmpresa(senderId, empresa){
   }
 
   sendMessage(senderId, messageData);
-
-  openMap(senderId);
-
   sendMessageTimed(senderId);
 
 }
