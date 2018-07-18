@@ -321,8 +321,8 @@ function sendMessageTimed(senderId){
 
   var messageSend = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
 
-  var enviarMemsagem = setTimeout(function(){sendMessage(senderId, {text: messageSend})},2000);
- // sendMessage(senderId, {text: message});
+  var enviarMensagem = setTimeout(function(){sendMessage(senderId, {text: messageSend})},3500);
+ 
 }
 
 async function sendResult(senderId, pesquisa) {
@@ -398,8 +398,11 @@ function randomResult (senderId, arraySnap) {
 
     if(profissional.empresa !== undefined && profissional.empresa !== null)
       contatoEmpresa(senderId, profissional.empresa);
-      
-    baixeAplicativo(senderId);
+    else
+      sendMessageTimed(senderId);
+    
+    var enviarMensagem = setTimeout(function(){baixeAplicativo(senderId)},2000);
+    
 
   }else{
 
@@ -428,6 +431,8 @@ function contatoEmpresa(senderId, empresa){
         empresa.estado    !== undefined ){
 
       botaoEmpresa(senderId, empresa);
+
+
 
     }
   }
