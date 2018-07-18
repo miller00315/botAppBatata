@@ -460,6 +460,12 @@ function botaoEmpresa(senderId, empresa){
               "url": empresa.site,
               "title":"Acesse a página",
               "webview_height_ratio": "full"
+            },
+            {
+              "type":"web_url",
+              "url": empresa.site,
+              "title":"Acesse a página",
+              "webview_height_ratio": "full"
             }, {
               "type":"phone_number",
               "title":"Telefone",
@@ -468,13 +474,7 @@ function botaoEmpresa(senderId, empresa){
               "type": "postback",
               "title": "Email",
               "payload": "email_"+empresa.email,
-            }, {
-              "type":"web_url",
-              "url": empresa.site,
-              "title":"Endereço",
-              "webview_height_ratio": "full"
             }
-
           ]
         }]
       }
