@@ -319,9 +319,10 @@ async function sendAnswer(senderId) {
 
 function sendMessageTimed(senderId){
 
-  let message = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
+  var messageSend = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
 
-  sendMessage(senderId, {text: message});
+  var enviarMemsagem = setTimeout(sendMessage(senderId, {text: messageSend}),2000);
+ // sendMessage(senderId, {text: message});
 }
 
 async function sendResult(senderId, pesquisa) {
