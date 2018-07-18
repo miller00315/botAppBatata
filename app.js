@@ -321,7 +321,7 @@ function sendMessageTimed(senderId){
 
   var messageSend = "Caso precise de mim basta mandar a palavra oi e voltamos a conversar, ou digite o profissional que você procura.";
 
-  var enviarMemsagem = setTimeout(sendMessage(senderId, {text: messageSend}),2000);
+  var enviarMemsagem = setTimeout(function(){sendMessage(senderId, {text: messageSend})},2000);
  // sendMessage(senderId, {text: message});
 }
 
