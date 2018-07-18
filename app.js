@@ -495,7 +495,7 @@ function botaoEndereco(senderId, empresa){
           "buttons": [
             {
               "type":"web_url",
-              "url": "https://www.google.com/maps/?q="+ empresa.endereco,
+              "url": "https://www.google.com/maps/?q="+ empresa.endereco + " - " + empresa.cidade + ", " + empresa.estado,
               "title":"Mapa",
               "webview_height_ratio": "full"
             }
