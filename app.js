@@ -468,7 +468,13 @@ function botaoEmpresa(senderId, empresa){
               "type": "postback",
               "title": "Email",
               "payload": "email_"+empresa.email,
+            }, {
+              "type":"web_url",
+              "url": empresa.site,
+              "title":"Endereço",
+              "webview_height_ratio": "full"
             }
+
           ]
         }]
       }
