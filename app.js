@@ -441,16 +441,7 @@ function contatoEmpresa(senderId, empresa){
 
 }
 
-function openMap(senderId, latitude, longitude, nomeEmpresa){
 
-
-  let messageData = {
-
-    "att"
-
-  }
-
-}
 
 
 function botaoEmpresa(senderId, empresa){
