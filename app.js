@@ -492,7 +492,7 @@ function botaoEndereco(senderId, empresa){
         "template_type": "generic",
         "elements": [{
           "title": "Vá até " + empresa.nome,
-          "subtitle": empresa.endereco + ", "+ empresa.cidade" - "+empresa.estado,
+          "subtitle": empresa.endereco + ", "+ empresa.cidade+" - "+empresa.estado,
           "buttons": [
             {
               "type":"web_url",
