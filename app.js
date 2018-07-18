@@ -154,6 +154,8 @@ function processPostback(event) {
 
       baixeAplicativo(senderId);
 
+      sendMessageTimed(senderId);
+
     });
 
 
