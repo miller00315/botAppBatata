@@ -4,8 +4,10 @@ var express 	   = require("express");
 var request 	   = require("request");
 var bodyParser 	 = require("body-parser");
 var normalizer   = require("normalize-strings");
+var cors         = require("cors");
 var app = express();
 
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -43,6 +45,10 @@ app.post("/webhook", function (req, res) {
 
     res.sendStatus(200);
   }
+});
+
+app.get("/consult", function (req, res) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
 });
 
 function processPostback(event) {
