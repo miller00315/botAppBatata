@@ -50,7 +50,6 @@ app.post("/webhook", function (req, res) {
 app.get("/consult", function (req, res) {
 
   console.log("Query: " + req.query["value"]);
-  //res.json({msg: 'This is CORS-enabled for all origins!'});
 
   getResult(req.query["value"], res)
 
@@ -328,7 +327,7 @@ async function getResult(pesquisa, res){
 
          // return(senderId, arraySnap);
 
-         res.json(JSON.stringify(arraySnap));
+         res.json(arraySnap);
 
         }else{
 
