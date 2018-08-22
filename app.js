@@ -50,7 +50,7 @@ app.post("/webhook", function (req, res) {
 app.get("/consult", function (req, res) {
 
   console.log("Error getting user's name: " +  req + " " + res);
-  res.json({msg: 'This is CORS-enabled for all origins!'},req,res})
+  res.json({msg: 'This is CORS-enabled for all origins!'},req,res});
 });
 
 function processPostback(event) {
