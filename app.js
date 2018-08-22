@@ -50,7 +50,9 @@ app.post("/webhook", function (req, res) {
 app.get("/consult", function (req, res) {
 
   console.log("Query: " + req.query["value"]);
-  res.json({msg: 'This is CORS-enabled for all origins!'});
+  //res.json({msg: 'This is CORS-enabled for all origins!'});
+
+  getResult(req.query["value"], res)
 
 });
 
@@ -299,7 +301,7 @@ function sendMessage(recipientId, message) {
   });
 }
 
-async function getResult(pesquisa){
+async function getResult(pesquisa, res){
 
   let profissional = normalizer(pesquisa);
 
@@ -309,7 +311,7 @@ async function getResult(pesquisa){
     .child('profissionais')
     .child('Padrao')
     .child('comum')
-    .child(profissional)
+    .child(profissional.toLowerCase())
     .once('value', function(snap){
 
       if(snap !== null){
@@ -324,17 +326,19 @@ async function getResult(pesquisa){
 
         if(arraySnap.length > 0){
 
-          return(senderId, arraySnap);
+         // return(senderId, arraySnap);
+
+         res.json(JSON.stringify(arraySnap));
 
         }else{
 
-          return({response: "Nada."});
+          res.json({response: "Nada."});
           
         }
 
       }else{
 
-        return({response: "Nada."});
+        res.json({response: "Nada."});
       }
 
     });
