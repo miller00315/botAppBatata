@@ -49,7 +49,7 @@ app.post("/webhook", function (req, res) {
 
 app.get("/consult", function (req, res) {
 
-  console.log("Error getting user's name: " +  req + " " + res);
+  console.log("Error getting user's name: " +  req.body.object + " " + res);
   res.json({msg: 'This is CORS-enabled for all origins!'});
 });
 
