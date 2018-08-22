@@ -49,8 +49,9 @@ app.post("/webhook", function (req, res) {
 
 app.get("/consult", function (req, res) {
 
-  console.log("Query: " + req.query);
+  console.log("Query: " + req.query.toString());
   res.json({msg: 'This is CORS-enabled for all origins!'});
+
 });
 
 function processPostback(event) {
