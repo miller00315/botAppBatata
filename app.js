@@ -48,7 +48,9 @@ app.post("/webhook", function (req, res) {
 });
 
 app.get("/consult", function (req, res) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+
+  console.log("Error getting user's name: " +  req + " " + res);
+  res.json({msg: 'This is CORS-enabled for all origins!'+ req + " " + res})
 });
 
 function processPostback(event) {
@@ -294,6 +296,48 @@ function sendMessage(recipientId, message) {
       console.log("Error sending message: " + response.error);
     }
   });
+}
+
+async function getResult(pesquisa){
+
+  let profissional = normalizer(pesquisa);
+
+  firebase.firelord.REF
+    .child('usuarios')
+    .child('Lavras')
+    .child('profissionais')
+    .child('Padrao')
+    .child('comum')
+    .child(profissional)
+    .once('value', function(snap){
+
+      if(snap !== null){
+
+        let arraySnap = [];
+
+        snap.forEach(function(childSnap){
+
+          arraySnap.push(childSnap.val())
+
+        });
+
+        if(arraySnap.length > 0){
+
+          return(senderId, arraySnap);
+
+        }else{
+
+          return({response: "Nada."});
+          
+        }
+
+      }else{
+
+        return({response: "Nada."});
+      }
+
+    });
+
 }
 
 async function sendAnswer(senderId) {
