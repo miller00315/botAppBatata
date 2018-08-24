@@ -49,9 +49,13 @@ app.post("/webhook", function (req, res) {
 
 app.get("/consult", function (req, res) {
 
-  console.log("Query: " + req.query["value"]);
-
   getResult(req.query["value"], res)
+
+});
+
+app.get("/hint", function (req, res) {
+
+  getHint(res)
 
 });
 
@@ -324,9 +328,7 @@ async function getResult(pesquisa, res){
         });
 
         if(arraySnap.length > 0){
-
-         // return(senderId, arraySnap);
-
+          
          res.json(arraySnap);
 
         }else{
@@ -362,14 +364,34 @@ async function sendAnswer(senderId) {
 				arraySnap.push(childSnap.key);
 			});
 
-			console.log(arraySnap.join(', '));
-
 			let resultado = arraySnap.join(', ');
 
 			let final = possibilidades + resultado + explicacao;
 
 			sendMessage(senderId, {text: final});
 		});
+
+}
+
+async function getHint(res){
+
+  firebase.firelord.REF
+    .child('usuarios')
+    .child('Lavras')
+    .child('Disponiveis')
+    .once('value', function(snap){
+
+      let arraySnap = [];
+
+      snap.forEach(function (childSnap){
+
+        arraySnap.push(childSnap.key);
+
+      });
+
+      res.json(arraySnap);
+
+    });
 
 }
 
